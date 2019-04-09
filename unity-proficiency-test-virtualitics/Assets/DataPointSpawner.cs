@@ -19,6 +19,8 @@ public class DataPointSpawner : MonoBehaviour {
 
 	public GameObject pointfordata;
 
+	public GameObject parentSpawner;
+
 
 	// Use this for initialization
 	void Start () {
@@ -45,7 +47,10 @@ public class DataPointSpawner : MonoBehaviour {
 			float z_coordinate = System.Convert.ToSingle(datapoints[i][zindexname]);
 
 
-			Instantiate(pointfordata, new Vector3(z_coordinate, y_coordinate, z_coordinate), Quaternion.identity);
+			GameObject spawnedChild = Instantiate(pointfordata, new Vector3(z_coordinate, y_coordinate, z_coordinate), Quaternion.identity);
+
+			spawnedChild.transform.parent = parentSpawner.transform;
+
 		}
 
 		// Instantiate(pointfordata, new Vector3(1,1,1), Quaternion.identity);
