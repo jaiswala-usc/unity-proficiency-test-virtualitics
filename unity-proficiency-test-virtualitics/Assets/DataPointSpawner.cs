@@ -34,11 +34,12 @@ public class DataPointSpawner : MonoBehaviour {
 		Debug.Log(datapoints);
 
 		List<string> columns = new List<string> (datapoints[1].Keys);
+		
 		Debug.Log(datapoints.Count);
 
 		foreach (string column in columns)
 		{
-			Debug.Log("Col" + column);
+			Debug.Log("Col    " + column);
 		}
 
 		xindexname = columns[xindex];
@@ -51,17 +52,21 @@ public class DataPointSpawner : MonoBehaviour {
 			float x_coordinate = System.Convert.ToSingle(datapoints[i][xindexname]);
 			float y_coordinate = System.Convert.ToSingle(datapoints[i][yindexname]);
 			float z_coordinate = System.Convert.ToSingle(datapoints[i][zindexname]);
-			float dataPointSize = System.Convert.ToSingle(datapoints[i][sizeindexname])/10;
+			float dataPointSize = System.Convert.ToSingle(datapoints[i][sizeindexname])/20;
 			float dataPointColorCode = System.Convert.ToSingle(datapoints[i][colorindexname]);
+
+			// Debug.Log(x_coordinate);
 
 			// Debug.Log(color);
 
 			//Debug.Log(x_coordinate + y_coordinate + z_coordinate + color);
 
 
-			GameObject spawnedChild = Instantiate(pointfordata, new Vector3(z_coordinate, y_coordinate, z_coordinate), Quaternion.identity);
+			GameObject spawnedChild = Instantiate(pointfordata, new Vector3(x_coordinate, y_coordinate, z_coordinate), Quaternion.identity);
 
 			spawnedChild.transform.localScale = new Vector3(dataPointSize, dataPointSize, dataPointSize);
+
+			Debug.Log(spawnedChild.transform.position);
 
 			if (dataPointColorCode == 0) {
 				spawnedChild.GetComponent<Renderer>().material.color = Color.red;
@@ -73,7 +78,7 @@ public class DataPointSpawner : MonoBehaviour {
 				spawnedChild.GetComponent<Renderer>().material.color = new Color(1,1,1,1);
 			}
 			
-			Debug.Log(spawnedChild.GetComponent<Renderer>().material.color);
+			//Debug.Log(spawnedChild.GetComponent<Renderer>().material.color);
 			
 			spawnedChild.transform.parent = parentSpawner.transform;
 
