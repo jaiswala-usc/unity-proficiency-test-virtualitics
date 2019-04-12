@@ -119,6 +119,9 @@ public class DataPointSpawner : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetMouseButtonDown(0)) {
+
+			currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow*0.1f);
+			
 			RaycastHit hit;
 
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -127,6 +130,8 @@ public class DataPointSpawner : MonoBehaviour {
 				SphereCollider sc = hit.collider as SphereCollider;
 				if (sc != null) {
 					currentSphere = sc.gameObject;
+					string prevName = currentSphere.name;
+					currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
 					setUIvalues(currentSphere);
 					UIPanel.SetActive(true);
 					// string new_x = GameObject.Find((Convert.ToInt32(sc.gameObject.name)+1).ToString()).transform.position.x.ToString();
@@ -135,7 +140,10 @@ public class DataPointSpawner : MonoBehaviour {
 					UIPanel.SetActive(false);
 				}
 			}
+
+			
 		}
+
 		
 	}
 
