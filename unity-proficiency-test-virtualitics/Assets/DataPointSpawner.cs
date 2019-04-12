@@ -46,16 +46,8 @@ public class DataPointSpawner : MonoBehaviour {
 
 		datapoints = ParseCSVData.Read(testcsv);
 
-		//Debug.Log(datapoints);
 
 		List<string> columns = new List<string> (datapoints[1].Keys);
-		
-		//Debug.Log(datapoints.Count);
-
-		// foreach (string column in columns)
-		// {
-		// 	Debug.Log("Col    " + column);
-		// }
 
 		xindexname = columns[xindex];
 		yindexname = columns[yindex];
@@ -75,12 +67,6 @@ public class DataPointSpawner : MonoBehaviour {
 			float dataPointSize = Convert.ToSingle(datapoints[i][sizeindexname])/100;
 			float dataPointColorCode = Convert.ToSingle(datapoints[i][colorindexname]);
 
-			// Debug.Log(x_coordinate);
-
-			// Debug.Log(color);
-
-			//Debug.Log(x_coordinate + y_coordinate + z_coordinate + color);
-
 
 			GameObject spawnedChild = Instantiate(pointfordata, new Vector3(x_coordinate, y_coordinate, z_coordinate)*scalePosition, Quaternion.identity);
 
@@ -98,13 +84,9 @@ public class DataPointSpawner : MonoBehaviour {
 				spawnedChild.GetComponent<Renderer>().material.color = new Color(1,1,1,1);
 			}
 			
-			//Debug.Log(spawnedChild.GetComponent<Renderer>().material.color);
-			
 			spawnedChild.transform.parent = parentSpawner.transform;
 
 		}
-
-		// Instantiate(pointfordata, new Vector3(1,1,1), Quaternion.identity);
 		
 		
 	}
@@ -130,12 +112,9 @@ public class DataPointSpawner : MonoBehaviour {
 				SphereCollider sc = hit.collider as SphereCollider;
 				if (sc != null) {
 					currentSphere = sc.gameObject;
-					string prevName = currentSphere.name;
 					currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
 					setUIvalues(currentSphere);
 					UIPanel.SetActive(true);
-					// string new_x = GameObject.Find((Convert.ToInt32(sc.gameObject.name)+1).ToString()).transform.position.x.ToString();
-					// Debug.Log(new_x);
 				} else {
 					UIPanel.SetActive(false);
 				}
