@@ -127,12 +127,16 @@ public class DataPointSpawner : MonoBehaviour {
 	}
 
 	public void rightButtonUI() {
+		currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow*0.1f);
 		currentSphere = GameObject.Find((Convert.ToInt32(currentSphere.name)+1).ToString());
+		currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
 		setUIvalues (currentSphere);
 	}
 
 	public void leftButtonUI() {
+		currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow*0.1f);
 		currentSphere = GameObject.Find((Convert.ToInt32(currentSphere.name)-1).ToString());
+		currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
 		setUIvalues (currentSphere);
 	}
 
