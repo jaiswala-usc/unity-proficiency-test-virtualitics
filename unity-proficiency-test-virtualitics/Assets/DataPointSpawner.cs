@@ -103,6 +103,7 @@ public class DataPointSpawner : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0)) {
 
 			currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow*0.1f);
+			currentSphere.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
 			
 			RaycastHit hit;
 
@@ -112,8 +113,10 @@ public class DataPointSpawner : MonoBehaviour {
 				SphereCollider sc = hit.collider as SphereCollider;
 				if (sc != null) {
 					currentSphere = sc.gameObject;
-					currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
+					
 					setUIvalues(currentSphere);
+					currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
+					currentSphere.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
 					UIPanel.SetActive(true);
 				} else {
 					UIPanel.SetActive(false);
@@ -127,12 +130,26 @@ public class DataPointSpawner : MonoBehaviour {
 	}
 
 	public void rightButtonUI() {
+		currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow*0.1f);
+			currentSphere.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+
 		currentSphere = GameObject.Find((Convert.ToInt32(currentSphere.name)+1).ToString());
+
+				currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
+		currentSphere.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+
 		setUIvalues (currentSphere);
 	}
 
 	public void leftButtonUI() {
+
+		currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow*0.1f);
+			currentSphere.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+
 		currentSphere = GameObject.Find((Convert.ToInt32(currentSphere.name)-1).ToString());
+
+				currentSphere.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
+		currentSphere.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
 		setUIvalues (currentSphere);
 	}
 
